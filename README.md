@@ -17,7 +17,7 @@
 
 ## ✨ Key Features
 
-* **Multi-Task Learning (MTL) Approach:** Improves surrogate model accuracy by decoupling airfoil surface characteristics (e.g., pressure distribution) and fluid domain predictions (e.g., lift, drag coefficients).
+* **Multi-Task Learning (MTL) Approach:** Improves surrogate model accuracy by decoupling airfoil surface characteristics and fluid domain predictions.
 * **Reproducible Research:** Provides all code, configurations, and instructions to reproduce our experimental results.
 * **Powered by PyTorch Lightning & Hydra:** Ensures clean, organized, and configurable experiments.
 * **Fast Environment Setup with `uv` (Recommended):** Leverage modern tooling for efficient dependency management.
