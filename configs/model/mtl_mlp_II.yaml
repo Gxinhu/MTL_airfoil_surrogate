@@ -1,0 +1,22 @@
+_target_: models.airflow_module_mtl.AirflowModule
+
+net:
+  _target_: src.models.modules.airflow_models.Airflow_NN.AirflowNNMTLDecoderII
+  encoder: [7, 64, 64, 8]
+  decoder_surf: [8, 64, 64, 1]
+  decoder_vol: [8, 64, 64, 1]
+  nb_hidden_layers: 3
+  size_hidden_layers: 64
+  bn_bool: true
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.OneCycleLR
+  _partial_: true
+  max_lr: ${model.optimizer.lr}
+
+compile: true

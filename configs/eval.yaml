@@ -1,0 +1,22 @@
+# @package _global_
+
+# specify here default evaluation configuration
+defaults:
+  - _self_
+  - datamodule: mnist.yaml # choose the datamodule for evaluation
+  - model: mnist.yaml
+  - callbacks: null
+  - logger: null
+  - trainer: default.yaml
+  - hydra: default.yaml
+  - paths: default.yaml
+
+  - experiment: null
+
+
+seed: null
+
+task_name: "eval"
+
+# passing checkpoint path is necessary
+ckpt_path: ???

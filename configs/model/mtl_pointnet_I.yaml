@@ -1,0 +1,20 @@
+_target_: models.airflow_module_mtl.AirflowModule
+
+net:
+  _target_: src.models.modules.airflow_models.PointNet.PointNetMTLDecoderI
+  encoder: [7, 64, 64, 8]
+  decoder_surf: [8, 64, 64, 1]
+  decoder_vol: [8, 64, 64, 4]
+  base_nb: 8
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.OneCycleLR
+  _partial_: true
+  max_lr: ${model.optimizer.lr}
+
+compile: true

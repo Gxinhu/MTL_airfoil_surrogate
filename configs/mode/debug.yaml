@@ -1,0 +1,12 @@
+# @package _global_
+
+# run in debug mode with:
+# `python run.py mode=debug`
+
+defaults:
+  - override /trainer: debug.yaml
+
+debug_mode: True
+task_name: debug
+# disable rich config printing, since it will be already printed by hydra when `verbose: True`
+print_config: False

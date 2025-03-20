@@ -1,0 +1,42 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=example_simple.yaml
+
+defaults:
+  - override /trainer: default.yaml # choose trainer from 'configs/trainer/'
+  - override /model: mtl_mlp_I
+  - override /datamodule: airflow_datamodule.yaml
+  - override /callbacks: default
+  - override /logger: null
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+seed: 1
+
+trainer:
+  min_epochs: 1
+  max_epochs: 800
+  devices: [0]
+  benchmark: true
+  check_val_every_n_epoch: 10
+
+model:
+  loss_term: stch
+  compile: true
+  optimizer:
+    _target_: torch.optim.Adam
+    _partial_: true
+    lr: 0.001
+    weight_decay: 0.0
+
+  scheduler:
+    _target_: torch.optim.lr_scheduler.OneCycleLR
+    _partial_: true
+    max_lr: ${model.optimizer.lr}
+
+task_name: airflow_mtl
+callbacks:
+  early_stopping:
+    patience: 200
